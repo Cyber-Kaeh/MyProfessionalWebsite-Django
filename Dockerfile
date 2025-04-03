@@ -39,4 +39,4 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 # During debugging, this entry point will be overridden
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "testproject.wsgi"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi"]
