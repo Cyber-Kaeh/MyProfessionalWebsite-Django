@@ -1,18 +1,48 @@
 {
-    "name": "My Professional Website - Django",
-    "dockerFile": "Dockerfile",
-    "appPort": [8000],
-    "customizations": {
-        "vscode": {
+    "name": "Django & Vue",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2":{
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/python:1": "none",
+        "ghcr.io/devcontainers/features/node:1": "none",
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+        }
+    },
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python"
+			},
             "extensions": [
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                "ms-toolsai.jupyter",
-                "esbenp.prettier-vscode"
-            ],
-            "settings": {
-                "python.pythonPath": "/usr/local/bin/python"
-            }
-        }
-    }
+                "ms-python.vscode-black-formatter",
+                "esbenp.prettier-vscode",
+                "hossaini.bootstrap-intellisense",
+                "vue.volar"
+            ]
+		}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8000, 5173, 8080],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	//"postCreateCommand": "pip3 install --user -r requirements.txt && git config --global --add safe.directory /workspaces/MyProfessionalWebsite-Django",
+
+	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
 }
